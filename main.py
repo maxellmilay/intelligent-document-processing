@@ -5,10 +5,10 @@ from lib.prompts.insurance import insurance_prompts
 from lib.interfaces.insurance import insurance_types
  
 def main():
-    # Initialize LLM instance
+    # Initialize LLM instance with LangChain
     llm = LLM(temperature=0.7)
 
-    # Process prompts and get responses
+    # Process prompts and get responses using LangChain
     processor = PromptProcessor(llm, prompts=insurance_prompts, interface=insurance_types)
     
     # Print the responses as properly formatted JSON

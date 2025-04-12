@@ -1,23 +1,23 @@
-import json
-from openai import OpenAI
 import os
 from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 
 load_dotenv()
 
 class LLM:
     """
-    A client for interacting with language models via the OpenAI API.
+    A client for interacting with language models via LangChain.
     
-    This class provides a simplified interface for making requests to OpenAI's
-    various language models, supporting both chat completions and text completions.
+    This class provides a simplified interface for making requests to language models,
+    supporting both chat completions and text completions.
     
     Attributes:
         api_key (str): The OpenAI API key from environment variables
-        client (OpenAI): The OpenAI client instance
         provider (str): The API provider (currently only supports "openai")
         model (str): The default model to use for completions
         default_config (dict): Default configuration parameters for API calls
+        llm (ChatOpenAI): The LangChain model instance
     """
     
     def __init__(self, provider="openai", model="gpt-3.5-turbo", **config_options):
@@ -40,7 +40,6 @@ class LLM:
             Requires OPENAI_API_KEY to be set in environment variables or .env file.
         """
         self.api_key = os.getenv("OPENAI_API_KEY")
-        self.client = OpenAI(api_key=self.api_key)
         self.provider = provider
         self.model = model
         
@@ -52,8 +51,15 @@ class LLM:
             "frequency_penalty": config_options.get("frequency_penalty", 0.0),
             "presence_penalty": config_options.get("presence_penalty", 0.0),
             "stop": config_options.get("stop", None),
-            "user": config_options.get("user", None)
+            "model_kwargs": {"user": config_options.get("user", None)} if config_options.get("user") else {}
         }
+        
+        # Initialize the LangChain model
+        self.llm = ChatOpenAI(
+            model=self.model,
+            openai_api_key=self.api_key,
+            **{k: v for k, v in self.default_config.items() if k != "user"}
+        )
 
     def generate(self, payload):
         """
@@ -74,35 +80,55 @@ class LLM:
         Raises:
             ValueError: If neither messages nor prompt is provided
         """
-        # Merge defaults with any overrides
-        config = {**self.default_config, **{k: v for k, v in payload.items() if k in self.default_config and k not in ['model', 'messages', 'prompt']}}
-
+        # Extract parameters
         messages = payload.get("messages")
         prompt = payload.get("prompt")
         model = payload.get("model", self.model)
+        
+        # Create config dict for LangChain model
+        config = {
+            k: v for k, v in self.default_config.items() 
+            if k in ['temperature', 'max_tokens', 'top_p', 'frequency_penalty', 'presence_penalty', 'stop']
+        }
+        
+        # Update config with any overrides from payload
+        for k in config.keys():
+            if k in payload:
+                config[k] = payload[k]
+        
+        # Check if we need to create a new model instance with different parameters
+        if model != self.model or any(payload.get(k) != self.default_config.get(k) for k in config.keys()):
+            llm = ChatOpenAI(
+                model=model,
+                openai_api_key=self.api_key,
+                **config
+            )
+        else:
+            llm = self.llm
 
         if messages is None and prompt is None:
             raise ValueError("You must provide either 'messages' (for chat models) or 'prompt' (for completion models).")
 
-        if model.startswith("gpt-"):
-            if not messages and prompt:
-                messages = [{"role": "user", "content": prompt}]
-            response = self.client.chat.completions.create(
-                model=model,
-                messages=messages,
-                **config
-            )
-            return response.choices[0].message.content
-
-        else:
-            if not prompt:
-                raise ValueError("Prompt is required for non-chat models.")
-            response = self.client.completions.create(
-                model=model,
-                prompt=prompt,
-                **config
-            )
-            return response.choices[0].text
+        # Handle chat completions
+        if messages is not None:
+            # Convert the message format to LangChain's format
+            langchain_messages = []
+            for msg in messages:
+                if msg["role"] == "user":
+                    langchain_messages.append(HumanMessage(content=msg["content"]))
+                elif msg["role"] == "system":
+                    langchain_messages.append(SystemMessage(content=msg["content"]))
+                elif msg["role"] == "assistant":
+                    langchain_messages.append(AIMessage(content=msg["content"]))
+            
+            # Invoke the model and return the content
+            response = llm.invoke(langchain_messages)
+            return response.content
+        
+        # Handle text completions (using chat model in the background)
+        elif prompt is not None:
+            response = llm.invoke([HumanMessage(content=prompt)])
+            return response.content
             
     def chat(self, messages, model=None, **kwargs):
         """

@@ -1,8 +1,10 @@
 import json
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 
 class PromptProcessor:
     def __init__(self, llm_instance, prompts, interface=None):
-        self.llm = llm_instance
+        self.llm = llm_instance.llm  # Use the LangChain model directly
         self.prompts = prompts
         self.interface = interface
         self.responses = {}
@@ -17,10 +19,18 @@ class PromptProcessor:
     def _process_prompts(self):
         for prompt_obj in self.prompts:
             field_name = prompt_obj["field_name"]
-            prompt = prompt_obj["prompt"]
+            prompt_text = prompt_obj["prompt"]
 
-            # Get response using the LLM class
-            response = self.llm.chat([{"role": "user", "content": prompt}])
+            # Create a LangChain chain using ChatPromptTemplate and StrOutputParser
+            prompt = ChatPromptTemplate.from_messages([
+                ("user", prompt_text)
+            ])
+            
+            # Create and execute the chain
+            chain = prompt | self.llm | StrOutputParser()
+            response = chain.invoke({})
+            
+            # Store the response
             self.responses[field_name] = response
 
     def _filter_responses(self):
