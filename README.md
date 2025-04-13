@@ -1,92 +1,160 @@
-# Prompt Dynamism
+# Intelligent Document Processing
 
-A simple yet powerful wrapper for interacting with OpenAI's language models, providing an easy-to-use interface for both chat completions and text completions.
+A framework for extracting structured information from documents, with a focus on insurance claim emails.
 
-## Features
+## Overview
 
-- Simple API for OpenAI language models
-- Support for both chat completions and text completions
-- Configurable parameters (temperature, max_tokens, etc.)
-- Environment-based API key management
+This project provides a set of tools for extracting structured information from emails, including:
+
+- Email body text
+- Email metadata (sender, recipients, subject, etc.)
+- Attachments (images, PDFs, and other documents)
+
+The framework is built around a flexible Extractor base class that can be extended to implement different extraction methods.
 
 ## Installation
 
+Clone the repository and install required dependencies:
+
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/prompt-dynamism.git
-cd prompt-dynamism
+git clone https://github.com/yourusername/intelligent-document-processing.git
+cd intelligent-document-processing
 
-# Install dependencies
+# Install basic dependencies
 pip install -r requirements.txt
 
-# Set up your OpenAI API key in .env file
-echo "OPENAI_API_KEY=your_api_key_here" > .env
+# Install OCR dependencies (optional)
+pip install pytesseract pillow
+
+# Install NER dependencies (optional)
+pip install spacy
+python -m spacy download en_core_web_sm
 ```
 
-## Requirements
+## Extractor Framework
 
-- Python 3.7+
-- OpenAI Python client
-- python-dotenv
-
-## Usage
-
-### Basic Usage
+The core of this project is the `Extractor` base class, which provides a common interface for various information extraction techniques:
 
 ```python
-from llm import LLM
-
-# Initialize with default settings
-llm = LLM()
-
-# Chat completion
-response = llm.chat([
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "What's the capital of France?"}
-])
-print(response)
-
-# Text completion
-response = llm.complete("The capital of France is")
-print(response)
+from lib.tools.extractors.base import Extractor
 ```
 
-### Advanced Configuration
+The base class provides:
+- A common interface for information extraction
+- Processing methods for emails and their components
+- Support for different extraction engines (Tesseract, spaCy, LLMs, etc.)
+- Customizable extraction logic
+
+### Available Extractors
+
+- **OCRExtractor**: Uses Optical Character Recognition to extract text from images and then extracts structured information from that text.
+- **NERExtractor**: Uses Named Entity Recognition to extract structured information from text.
+
+## Example Usage
+
+Here's a simple example of how to use the extractors:
 
 ```python
-# Configure client with custom parameters
-llm = LLM(
-    model="gpt-4",         # Use a more powerful model
-    temperature=0.9,       # Higher creativity
-    max_tokens=500         # Longer responses
-)
+from lib.tools.extractors.ocr_extractor import OCRExtractor
+from lib.tools.extractors.ner_extractor import NERExtractor
 
-# Override parameters for a specific request
-response = llm.chat(
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Write a short poem about AI."}
-    ],
-    temperature=0.2,       # More focused response
-    max_tokens=100         # Shorter response
-)
+# Initialize extractors with configuration
+ocr_extractor = OCRExtractor(config={
+    'lang': 'eng',
+    'preprocess': True,
+    # Optional extraction engine configuration
+    'extraction_engine_type': 'llm',
+    'engine_config': {
+        'model': 'gpt-3.5-turbo'
+    }
+})
+
+ner_extractor = NERExtractor(config={
+    'spacy_model': 'en_core_web_sm',
+    'confidence_threshold': 0.7
+})
+
+# Process an email (dictionary with body, metadata, and attachments)
+ocr_results = ocr_extractor.process_email(email_data)
+ner_results = ner_extractor.process_email(email_data)
+
+# Extract from specific content
+text_content = "Policy #: ABC123456 - Claim filed by John Doe"
+ner_results = ner_extractor.extract(text_content, "text")
 ```
 
-## API Reference
+### Processing an Email File
 
-### LLM Class
+The project includes an example script for processing `.eml` files:
 
-The main class for interacting with language models:
+```bash
+python examples/email_processing_example.py path/to/email.eml --output results.json --use-llm
+```
+
+## Creating Custom Extractors
+
+You can create custom extractors by inheriting from the `Extractor` base class and implementing the `extraction_logic` method:
 
 ```python
-LLM(provider="openai", model="gpt-3.5-turbo", **config_options)
+from lib.tools.extractors.base import Extractor
+
+class MyCustomExtractor(Extractor):
+    def __init__(self, config=None):
+        super().__init__(config)
+        # Initialize your custom extractor
+        
+    def _initialize_extraction_engine(self):
+        # Initialize any extraction engines based on config
+        if 'custom_engine' in self.config:
+            # Load and set up your extraction engine
+            self.extraction_engine = CustomEngine(**self.config.get('engine_config', {}))
+    
+    def extraction_logic(self, content, content_type="text", metadata=None):
+        # Implement your extraction logic
+        # This is where the actual extraction happens
+        extracted_data = {}
+        
+        # Example: simple regex extraction
+        if content_type == "text" and isinstance(content, str):
+            import re
+            policy_match = re.search(r'Policy\s*#?:?\s*(\w+)', content)
+            if policy_match:
+                extracted_data['policy_number'] = policy_match.group(1)
+        
+        # Use extraction engine if available
+        if self.extraction_engine and hasattr(self.extraction_engine, 'process'):
+            additional_data = self.extraction_engine.process(content)
+            extracted_data.update(additional_data)
+            
+        return extracted_data
 ```
 
-### Methods
+## Extraction Engines
 
-- `chat(messages, model=None, **kwargs)`: Generate responses using chat completion models
-- `complete(prompt, model=None, **kwargs)`: Generate responses using text completion models
+The framework is designed to work with various extraction engines:
+
+1. **OCR Engines**: Like Tesseract for converting images to text
+2. **NLP Models**: Such as spaCy for entity recognition
+3. **LLMs**: For advanced extraction and refinement
+4. **Custom Models**: Any model or tool that extracts structured information
+
+You can configure the extraction engine in the extractor's configuration:
+
+```python
+extractor = OCRExtractor(config={
+    # Base configuration
+    'lang': 'eng',
+    
+    # Extraction engine configuration
+    'extraction_engine_type': 'llm',
+    'engine_config': {
+        'model': 'gpt-4',
+        'temperature': 0.3
+    }
+})
+```
 
 ## License
 
-[Your License Here]
+This project is licensed under the MIT License - see the LICENSE file for details.
