@@ -1,0 +1,331 @@
+{
+  "email_metadata": {
+    "from": "john.doe@example.com",
+    "to": "claims@insuranceco.com",
+    "cc": "",
+    "bcc": "",
+    "subject": "Insurance Claim Filing - Policy #123456789",
+    "date": "Mon, 14 Apr 2025 10:34:00 -0500"
+  },
+  "processed_attachments": [
+    "IMG_001.jpg",
+    "Springfield_PD_Report_20250410.pdf",
+    "Repair_Estimate_ABC_Auto.pdf",
+    "IMG_001.jpg",
+    "Springfield_PD_Report_20250410.pdf",
+    "Repair_Estimate_ABC_Auto.pdf"
+  ],
+  "ocr_processed": [
+    "Attachment: IMG_001.jpg",
+    "Attachment: Springfield_PD_Report_20250410.pdf",
+    "Attachment: Repair_Estimate_ABC_Auto.pdf"
+  ],
+  "attachment_files": [
+    "/var/folders/z7/gc81l8792wbdbn65tmck8jhw0000gn/T/tmp1miyom1y/1_IMG_001.jpg",
+    "/var/folders/z7/gc81l8792wbdbn65tmck8jhw0000gn/T/tmp1miyom1y/2_Springfield_PD_Report_20250410.pdf",
+    "/var/folders/z7/gc81l8792wbdbn65tmck8jhw0000gn/T/tmp1miyom1y/3_Repair_Estimate_ABC_Auto.pdf"
+  ],
+  "attachment_references": [
+    {
+      "text": "IMG_001.jpg",
+      "context": "Photos of the vehicle damage (IMG_001.jpg)\n2. Police Report (Springfiel",
+      "position": 895
+    },
+    {
+      "text": "Springfield_PD_Report_20250410.pdf",
+      "context": "MG_001.jpg)\n2. Police Report (Springfield_PD_Report_20250410.pdf)\n3. Vehicle Repair Estimate (",
+      "position": 926
+    },
+    {
+      "text": "Repair_Estimate_ABC_Auto.pdf",
+      "context": ")\n3. Vehicle Repair Estimate (Repair_Estimate_ABC_Auto.pdf)\n\nPlease confirm receipt of t",
+      "position": 990
+    }
+  ],
+  "extracted_fields": {
+    "policy_number (Email Body)": "62704",
+    "claim_number (Email Body)": "123456789",
+    "date_of_loss (Email Body)": "123456789",
+    "claimant_name (Email Body)": "John Doe  \n- Address",
+    "policy_number (Email Metadata)": "123456789",
+    "claim_number (Email Metadata)": "123456789",
+    "date_of_loss (Email Metadata)": "14",
+    "claimant_name (Email Metadata)": "Claim Filing -",
+    "claimant_name (Attachment Reference: IMG_001.jpg)": "Springfiel"
+  },
+  "entities": {
+    "ORG": [
+      {
+        "text": "Dear Claims Department",
+        "start": 0,
+        "end": 22,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "IL 62704  \n- Phone",
+        "start": 339,
+        "end": 357,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "IL  \n- Description: While",
+        "start": 614,
+        "end": 639,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "Vehicle Repair Estimate",
+        "start": 965,
+        "end": 988,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "Vehicle Repair Estimate",
+        "start": 69,
+        "end": 92,
+        "confidence": 1.0,
+        "source": "Attachment Reference: Springfield_PD_Report_20250410.pdf"
+      },
+      {
+        "text": "Vehicle Repair Estimate",
+        "start": 5,
+        "end": 28,
+        "confidence": 1.0,
+        "source": "Attachment Reference: Repair_Estimate_ABC_Auto.pdf"
+      }
+    ],
+    "MONEY": [
+      {
+        "text": "123456789",
+        "start": 95,
+        "end": 104,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "123456789",
+        "start": 107,
+        "end": 116,
+        "confidence": 1.0,
+        "source": "Email Metadata"
+      }
+    ],
+    "DATE": [
+      {
+        "text": "April 10, 2025",
+        "start": 144,
+        "end": 158,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "1234",
+        "start": 309,
+        "end": 313,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "123456789",
+        "start": 425,
+        "end": 434,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "April 10, 2025  \n- Time of Incident",
+        "start": 480,
+        "end": 515,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "14",
+        "start": 128,
+        "end": 130,
+        "confidence": 1.0,
+        "source": "Email Metadata"
+      },
+      {
+        "text": "2025",
+        "start": 135,
+        "end": 139,
+        "confidence": 1.0,
+        "source": "Email Metadata"
+      }
+    ],
+    "PERSON": [
+      {
+        "text": "John Doe  \n- Address",
+        "start": 287,
+        "end": 307,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "John Doe\n",
+        "start": 1246,
+        "end": 1255,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "Claim Filing -",
+        "start": 84,
+        "end": 98,
+        "confidence": 1.0,
+        "source": "Email Metadata"
+      },
+      {
+        "text": "Springfiel",
+        "start": 61,
+        "end": 71,
+        "confidence": 1.0,
+        "source": "Attachment Reference: IMG_001.jpg"
+      }
+    ],
+    "FAC": [
+      {
+        "text": "Elm Street",
+        "start": 314,
+        "end": 324,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "5th Avenue",
+        "start": 573,
+        "end": 583,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "Main Street",
+        "start": 588,
+        "end": 599,
+        "confidence": 1.0,
+        "source": "Email Body"
+      }
+    ],
+    "GPE": [
+      {
+        "text": "Springfield",
+        "start": 326,
+        "end": 337,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "Springfield",
+        "start": 601,
+        "end": 612,
+        "confidence": 1.0,
+        "source": "Email Body"
+      }
+    ],
+    "CARDINAL": [
+      {
+        "text": "555",
+        "start": 360,
+        "end": 363,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "123",
+        "start": 365,
+        "end": 368,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "1",
+        "start": 862,
+        "end": 863,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "2",
+        "start": 908,
+        "end": 909,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "3",
+        "start": 962,
+        "end": 963,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "2",
+        "start": 43,
+        "end": 44,
+        "confidence": 1.0,
+        "source": "Attachment Reference: IMG_001.jpg"
+      },
+      {
+        "text": "2",
+        "start": 12,
+        "end": 13,
+        "confidence": 1.0,
+        "source": "Attachment Reference: Springfield_PD_Report_20250410.pdf"
+      },
+      {
+        "text": "3",
+        "start": 66,
+        "end": 67,
+        "confidence": 1.0,
+        "source": "Attachment Reference: Springfield_PD_Report_20250410.pdf"
+      },
+      {
+        "text": "3",
+        "start": 2,
+        "end": 3,
+        "confidence": 1.0,
+        "source": "Attachment Reference: Repair_Estimate_ABC_Auto.pdf"
+      }
+    ],
+    "TIME": [
+      {
+        "text": "Approximately 3:45 PM CST  \n- Location: Intersection of",
+        "start": 517,
+        "end": 572,
+        "confidence": 1.0,
+        "source": "Email Body"
+      },
+      {
+        "text": "10:34:00",
+        "start": 140,
+        "end": 148,
+        "confidence": 1.0,
+        "source": "Email Metadata"
+      }
+    ]
+  },
+  "ocr_text": {
+    "Attachment: IMG_001.jpg": "",
+    "Attachment: Springfield_PD_Report_20250410.pdf": "",
+    "Attachment: Repair_Estimate_ABC_Auto.pdf": ""
+  },
+  "llm_results": {
+    "summary": "The email is a formal claim filing under auto insurance policy #123456789 for an incident on April 10, 2025. It includes policy holder information, incident details, and attached documents for review.",
+    "extracted_fields": {
+      "policy_number": "123456789",
+      "claim_number": "123456789",
+      "date_of_loss": "April 10, 2025",
+      "claimant_name": "John Doe"
+    },
+    "missing_info": {
+      "critical_information": "The full incident details are cut off in the email body."
+    },
+    "suggested_action": "Request additional information or clarification on the incident details to process the claim effectively."
+  },
+  "llm_prompt": "\nYou are an AI assistant specialized in extracting information from emails and their attachments.\nI have processed an email with NER and OCR and need your help to extract structured information.\n\nEmail Subject: Insurance Claim Filing - Policy #123456789\nFrom: john.doe@example.com\nTo: claims@insuranceco.com\nDate: Mon, 14 Apr 2025 10:34:00 -0500\n\nEmail Body Summary:\nDear Claims Department,\n\nI am writing to formally file a claim under my auto insurance policy #123456789 following an incident that occurred on April 10, 2025. Below are the details of the incident and the attached documents for your review.\n\n**Policy Holder Information:**\n- Full Name: John Doe  \n- Address: 1234 Elm Street, Springfield, IL 62704  \n- Phone: (555) 123-4567  \n- Email: john.doe@example.com  \n- Policy Number: 123456789  \n\n**Incident Details:**\n- Date of Incident: April 10, 2025  \n- T...\n\nThe following entities and fields have been extracted:\n\nEXTRACTED FIELDS:\n{\n  \"policy_number (Email Body)\": \"62704\",\n  \"claim_number (Email Body)\": \"123456789\",\n  \"date_of_loss (Email Body)\": \"123456789\",\n  \"claimant_name (Email Body)\": \"John Doe  \\n- Address\",\n  \"policy_number (Email Metadata)\": \"123456789\",\n  \"claim_number (Email Metadata)\": \"123456789\",\n  \"date_of_loss (Email Metadata)\": \"14\",\n  \"claimant_name (Email Metadata)\": \"Claim Filing -\",\n  \"claimant_name (Attachment Reference: IMG_001.jpg)\": \"Springfiel\"\n}\n\nEXTRACTED ENTITIES:\n{\n  \"ORG\": [\n    {\n      \"text\": \"Dear Claims Department\",\n      \"start\": 0,\n      \"end\": 22,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"IL 62704  \\n- Phone\",\n      \"start\": 339,\n      \"end\": 357,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"IL  \\n- Description: While\",\n      \"start\": 614,\n      \"end\": 639,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"Vehicle Repair Estimate\",\n      \"start\": 965,\n      \"end\": 988,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"Vehicle Repair Estimate\",\n      \"start\": 69,\n      \"end\": 92,\n      \"confidence\": 1.0,\n      \"source\": \"Attachment Reference: Springfield_PD_Report_20250410.pdf\"\n    },\n    {\n      \"text\": \"Vehicle Repair Estimate\",\n      \"start\": 5,\n      \"end\": 28,\n      \"confidence\": 1.0,\n      \"source\": \"Attachment Reference: Repair_Estimate_ABC_Auto.pdf\"\n    }\n  ],\n  \"MONEY\": [\n    {\n      \"text\": \"123456789\",\n      \"start\": 95,\n      \"end\": 104,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"123456789\",\n      \"start\": 107,\n      \"end\": 116,\n      \"confidence\": 1.0,\n      \"source\": \"Email Metadata\"\n    }\n  ],\n  \"DATE\": [\n    {\n      \"text\": \"April 10, 2025\",\n      \"start\": 144,\n      \"end\": 158,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"1234\",\n      \"start\": 309,\n      \"end\": 313,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"123456789\",\n      \"start\": 425,\n      \"end\": 434,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"April 10, 2025  \\n- Time of Incident\",\n      \"start\": 480,\n      \"end\": 515,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"14\",\n      \"start\": 128,\n      \"end\": 130,\n      \"confidence\": 1.0,\n      \"source\": \"Email Metadata\"\n    },\n    {\n      \"text\": \"2025\",\n      \"start\": 135,\n      \"end\": 139,\n      \"confidence\": 1.0,\n      \"source\": \"Email Metadata\"\n    }\n  ],\n  \"PERSON\": [\n    {\n      \"text\": \"John Doe  \\n- Address\",\n      \"start\": 287,\n      \"end\": 307,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"John Doe\\n\",\n      \"start\": 1246,\n      \"end\": 1255,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"Claim Filing -\",\n      \"start\": 84,\n      \"end\": 98,\n      \"confidence\": 1.0,\n      \"source\": \"Email Metadata\"\n    },\n    {\n      \"text\": \"Springfiel\",\n      \"start\": 61,\n      \"end\": 71,\n      \"confidence\": 1.0,\n      \"source\": \"Attachment Reference: IMG_001.jpg\"\n    }\n  ],\n  \"FAC\": [\n    {\n      \"text\": \"Elm Street\",\n      \"start\": 314,\n      \"end\": 324,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"5th Avenue\",\n      \"start\": 573,\n      \"end\": 583,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"Main Street\",\n      \"start\": 588,\n      \"end\": 599,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    }\n  ],\n  \"GPE\": [\n    {\n      \"text\": \"Springfield\",\n      \"start\": 326,\n      \"end\": 337,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"Springfield\",\n      \"start\": 601,\n      \"end\": 612,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    }\n  ],\n  \"CARDINAL\": [\n    {\n      \"text\": \"555\",\n      \"start\": 360,\n      \"end\": 363,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"123\",\n      \"start\": 365,\n      \"end\": 368,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"1\",\n      \"start\": 862,\n      \"end\": 863,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"2\",\n      \"start\": 908,\n      \"end\": 909,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"3\",\n      \"start\": 962,\n      \"end\": 963,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"2\",\n      \"start\": 43,\n      \"end\": 44,\n      \"confidence\": 1.0,\n      \"source\": \"Attachment Reference: IMG_001.jpg\"\n    },\n    {\n      \"text\": \"2\",\n      \"start\": 12,\n      \"end\": 13,\n      \"confidence\": 1.0,\n      \"source\": \"Attachment Reference: Springfield_PD_Report_20250410.pdf\"\n    },\n    {\n      \"text\": \"3\",\n      \"start\": 66,\n      \"end\": 67,\n      \"confidence\": 1.0,\n      \"source\": \"Attachment Reference: Springfield_PD_Report_20250410.pdf\"\n    },\n    {\n      \"text\": \"3\",\n      \"start\": 2,\n      \"end\": 3,\n      \"confidence\": 1.0,\n      \"source\": \"Attachment Reference: Repair_Estimate_ABC_Auto.pdf\"\n    }\n  ],\n  \"TIME\": [\n    {\n      \"text\": \"Approximately 3:45 PM CST  \\n- Location: Intersection of\",\n      \"start\": 517,\n      \"end\": 572,\n      \"confidence\": 1.0,\n      \"source\": \"Email Body\"\n    },\n    {\n      \"text\": \"10:34:00\",\n      \"start\": 140,\n      \"end\": 148,\n      \"confidence\": 1.0,\n      \"source\": \"Email Metadata\"\n    }\n  ]\n}\n\nOCR RESULTS:\n{\"Attachment: IMG_001.jpg\": \"...\", \"Attachment: Springfield_PD_Report_20250410.pdf\": \"...\", \"Attachment: Repair_Estimate_ABC_Auto.pdf\": \"...\"}\n\nBased on this information, please:\n1. Identify the key information in this email (topic, purpose, actions required)\n2. Extract any specific fields like policy numbers, claim numbers, dates, amounts, etc.\n3. Summarize the content in a structured way\n4. Note any inconsistencies or missing information\n\nFormat your response in JSON with these sections:\n- summary: A brief summary of the email\n- extracted_fields: Key information fields you've identified\n- missing_info: Any critical information that seems to be missing\n- suggested_action: What action should be taken with this email\n"
+}

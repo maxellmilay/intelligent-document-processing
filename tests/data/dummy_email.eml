@@ -1,0 +1,79 @@
+Content-Type: multipart/mixed; boundary="===============9061701176368980739=="
+MIME-Version: 1.0
+From: john.doe@example.com
+To: claims@insuranceco.com
+Subject: Insurance Claim Filing - Policy #123456789
+Date: Mon, 14 Apr 2025 10:34:00 -0500
+
+--===============9061701176368980739==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Dear Claims Department,
+
+I am writing to formally file a claim under my auto insurance policy #123456789 following an incident that occurred on April 10, 2025. Below are the details of the incident and the attached documents for your review.
+
+**Policy Holder Information:**
+- Full Name: John Doe  
+- Address: 1234 Elm Street, Springfield, IL 62704  
+- Phone: (555) 123-4567  
+- Email: john.doe@example.com  
+- Policy Number: 123456789  
+
+**Incident Details:**
+- Date of Incident: April 10, 2025  
+- Time of Incident: Approximately 3:45 PM CST  
+- Location: Intersection of 5th Avenue and Main Street, Springfield, IL  
+- Description: While stopped at a red light, my vehicle was rear-ended by another driver. The impact caused damage to the rear bumper and trunk area. A police report was filed at the scene. No injuries were sustained.
+
+**Attached Documents:**
+1. Photos of the vehicle damage (IMG_001.jpg)
+2. Police Report (Springfield_PD_Report_20250410.pdf)
+3. Vehicle Repair Estimate (Repair_Estimate_ABC_Auto.pdf)
+
+Please confirm receipt of this email and let me know if any additional information is needed to process my claim. I would appreciate a status update at your earliest convenience.
+
+Thank you for your assistance.
+
+Sincerely,  
+John Doe
+
+--===============9061701176368980739==
+Content-Type: image/jpeg
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="IMG_001.jpg"
+
+/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAABAgMEBQYHCAkKCwwNDg8QERITFBUWFxgZGhscHR4f
+ICEiIyQlJicoKSorLC0uLzAxMjM0NTY3ODk6Ozw9Pj//wAARCAAQABADASIAAhEBAxEB/9oADAMB
+AAIRAxEAPwABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB
+AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB/9k=
+
+--===============9061701176368980739==
+Content-Type: application/pdf
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="Springfield_PD_Report_20250410.pdf"
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSA+PgplbmRvYmoKeHJlZgowIDQKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAw
+MDAwIG4gCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDEyMSAwMDAwMCBuIAp0cmFpbGVyCjw8
+IC9Sb290IDEgMCBSID4+CnN0YXJ0eHJlZgoxODEKJSVFT0Y=
+
+--===============9061701176368980739==
+Content-Type: application/pdf
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="Repair_Estimate_ABC_Auto.pdf"
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2Jq
+CjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2Jq
+CjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIg
+NzkyXSA+PgplbmRvYmoKeHJlZgowIDQKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAw
+MDAwIG4gCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDEyMSAwMDAwMCBuIAp0cmFpbGVyCjw8
+IC9Sb290IDEgMCBSID4+CnN0YXJ0eHJlZgoxODEKJSVFT0Y=
+
+--===============9061701176368980739==--

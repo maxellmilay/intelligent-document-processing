@@ -1,5 +1,5 @@
-from lib.classes.llm import LLM
-from lib.classes.processor import PromptProcessor
+from lib.llm.llm import LLM
+from lib.llm.processor import PromptProcessor
 
 from lib.prompts.insurance import insurance_prompts
 from lib.interfaces.insurance import insurance_types
